@@ -21,15 +21,17 @@ extern "C" void app_main() {
   setup();
 
   while (true) {
-    motorRight.motorGo(150);
-    motorLeft.motorGo(150);
-    vTaskDelay(pdSECOND_motors);
-    motorRight.motorGo(-150);
-    motorLeft.motorGo(-150);
-    vTaskDelay(pdSECOND_motors);
-    motorRight.softStop();
-    motorLeft.softStop();
-    vTaskDelay(pdSECOND_motors);
+   for(int pwm = 0; pwm < 1024; pwm++) {
+     motorLeft.motorGo(pwm);
+     vTaskDelay(pdSECOND_LED);
+   }
+
+   vTaskDelay(pdSECOND_motors);
+
+    for(int pwm = 1023; pwm >= 0; pwm--) {
+      motorLeft.motorGo(pwm);
+      vTaskDelay(pdSECOND_LED);
+    }
   }
 }
 
