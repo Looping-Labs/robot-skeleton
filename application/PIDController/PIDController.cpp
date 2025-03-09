@@ -9,7 +9,7 @@
 #define TAG "PIDController"
 #define LOG_LEVEL_LOCAL ESP_LOG_VERBOSE
 
-namespace PIDController {
+namespace pidController {
   PIDController::PIDController(float Kp, float Ki, float Kd, float dt_ms, float min_output, float max_output): 
                                Kp(Kp), Ki(Ki), Kd(Kd), dt(dt_ms / 1000.0f), min_output(min_output), max_output(max_output), 
                                anti_windup(max_output), use_p(true), use_i(true), use_d(true) {

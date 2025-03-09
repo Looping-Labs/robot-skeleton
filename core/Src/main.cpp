@@ -2,6 +2,7 @@
 #include "esp_log.h"
 
 using namespace motorController;
+using namespace pidController;
 
 #define LOG_LEVEL_LOCAL ESP_LOG_VERBOSE
 #define TAG "MAIN"
@@ -15,6 +16,9 @@ const gpio_num_t PWM_MOTOR_RIGHT = GPIO_NUM_5;
 
 MotorController motorLeft(IN_1_MOTOR_LEFT, IN_2_MOTOR_LEFT, PWM_MOTOR_LEFT, 0);
 MotorController motorRight(IN_1_MOTOR_RIGHT, IN_2_MOTOR_RIGHT, PWM_MOTOR_RIGHT, 1);
+
+PIDController pidLine(5.0f, 0.1f, 0.3f, 10, -1023, 1023);
+PIDController pidSpeed(5.0f, 0.1f, 0.3f, 10, -1023, 1023);
 
 extern "C" void app_main() {
   ESP_LOGI(TAG, "Initial setup");
@@ -40,6 +44,8 @@ void setup(void) {
   gpio_set_direction(LED_PIN, GPIO_MODE_OUTPUT);
   motorRight.init();
   motorLeft.init();
+  pidLine.init();
+  pidSpeed.init();
 
   for (int i = 0; i < 3; i++) {
     blinkLed();

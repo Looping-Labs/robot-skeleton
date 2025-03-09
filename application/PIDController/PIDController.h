@@ -3,7 +3,7 @@
 #include "esp_err.h"
 #include "stdint.h"
 
-namespace PIDController {
+namespace pidController {
   /**
    * @brief PID Controller class for various control systems
    *
