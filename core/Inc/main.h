@@ -5,7 +5,7 @@
 #include "driver/gpio.h"
 #include "esp_err.h"
 #include "../../application/motorController/MotorController.h"
-#include "../../application/PIDController/PIDController.h"
+#include "../../application/PIDController/PIController.h"
 
 #define pdSECOND_motors pdMS_TO_TICKS(4000) 
 #define pdSECOND_LED pdMS_TO_TICKS(500) 
