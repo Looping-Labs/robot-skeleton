@@ -1,0 +1,40 @@
+menu "Robot WebSocket Server Configuration"
+
+    config WIFI_SSID
+        string "WiFi SSID"
+        default "myssid"
+        help
+            SSID (network name) for the robot to connect to.
+
+    config WIFI_PASSWORD
+        string "WiFi Password"
+        default "mypassword"
+        help
+            WiFi password (WPA or WPA2) for the robot to use.
+            
+    config WEBSOCKET_SERVER_PORT
+        int "WebSocket Server Port"
+        default 6969
+        help
+            Port for the WebSocket server to listen on.
+            
+    config MAX_WEBSOCKET_CONNECTIONS
+        int "Maximum WebSocket Connections"
+        default 5
+        range 1 10
+        help
+            Maximum number of simultaneous WebSocket client connections.
+            
+    config WEBSOCKET_TASK_STACK_SIZE
+        int "WebSocket Task Stack Size"
+        default 4096
+        help
+            Stack size for WebSocket handling tasks in bytes.
+            
+    config WEBSOCKET_QUEUE_SIZE
+        int "WebSocket Queue Size"
+        default 10
+        help
+            Size of WebSocket event queue.
+
+endmenu
