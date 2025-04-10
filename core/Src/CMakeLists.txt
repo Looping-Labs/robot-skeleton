@@ -4,8 +4,9 @@ idf_component_register(SRCS ${SOURCES}
                        REQUIRES freertos
                                 esp_common 
                                 driver 
-                                esp_wifi 
-                                esp_http_server 
                                 nvs_flash  
                                 esp_timer
-                                json)
+                                esp_wifi
+                                esp_http_server
+                                json
+                                bt)

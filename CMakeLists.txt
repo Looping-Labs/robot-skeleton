@@ -4,7 +4,7 @@
 # CMakeLists in this exact order for cmake to work correctly
 cmake_minimum_required(VERSION 3.5)
 set(CMAKE_CXX_STANDARD 23)
-set(EXTRA_COMPONENT_DIRS core application application/PIDController application/motorController)
+set(EXTRA_COMPONENT_DIRS core application)
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 project(robot)

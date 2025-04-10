@@ -4,6 +4,7 @@
 #include "MiniSumoEndpoints.h"
 #include "WebSocketHandler.h"
 #include "esp_http_server.h"
+#include "esp_wifi_types.h"
 #include <memory>
 #include <string>
 
@@ -22,9 +23,7 @@ public:
    * @param password WiFi password
    * @param port Server port to listen on
    */
-  Server(const std::string &ssid = "",
-         const std::string &password = "",
-         int port = 80);
+  Server(const std::string &ssid = "", const std::string &password = "", int port = 80);
 
   /**
    * @brief Destroys the Server object
@@ -77,6 +76,42 @@ public:
    */
   FollowerEndpoints *getFollowerEndpoints();
 
+  // Add to Server.h in the public section
+  /**
+   * @brief Checks if the server is connected to WiFi
+   *
+   * @return bool True if connected, false otherwise
+   */
+  bool isWiFiConnected() const { return isWiFiConnected_; }
+
+  /**
+   * @brief Gets the current IP address as a string
+   *
+   * @return std::string The IP address in format "xxx.xxx.xxx.xxx" or empty string if not connected
+   */
+  std::string getIpAddress() const;
+
+  /**
+   * @brief Gets the current RSSI (signal strength) value
+   *
+   * @return int8_t The signal strength in dBm or 0 if not connected
+   */
+  int8_t getWifiSignalStrength() const;
+
+  /**
+   * @brief Gets the name of the connected access point
+   *
+   * @return std::string The SSID name or empty string if not connected
+   */
+  std::string getConnectedSSID() const;
+
+  /**
+   * @brief Updates WiFi status information
+   *
+   * This method should be called periodically to keep WiFi status information up to date
+   */
+  void updateWifiStatus();
+
 private:
   /**
    * @brief Initializes WiFi connection
@@ -112,7 +147,9 @@ private:
   std::unique_ptr<MiniSumoEndpoints> miniSumoEndpoints_; // Mini-Sumo endpoints
   std::unique_ptr<FollowerEndpoints> followerEndpoints_; // Follower endpoints
 
-  bool isInitialized_;   // Flag indicating if server is initialized
-  bool isRunning_;       // Flag indicating if server is running
-  bool isWiFiConnected_; // Flag indicating if WiFi is connected
+  bool isInitialized_;      // Flag indicating if server is initialized
+  bool isRunning_;          // Flag indicating if server is running
+  bool isWiFiConnected_;    // Flag indicating if WiFi is connected
+  bool hasApInfo_;          // Flag indicating if we have valid AP info
+  wifi_ap_record_t apInfo_; // Information about the connected access point
 };
