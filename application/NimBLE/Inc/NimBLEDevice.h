@@ -1,4 +1,3 @@
-// nimble/Inc/NimBLEDevice.h
 #pragma once
 
 #include "NimBLETypes.h"
