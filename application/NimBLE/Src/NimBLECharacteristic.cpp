@@ -1,6 +1,6 @@
 // nimble/Src/NimBLECharacteristic.cpp
-#include "../Inc/NimBLECharacteristic.h"
-#include "../Inc/NimBLEService.h"
+#include "NimBLECharacteristic.h"
+#include "NimBLEService.h"
 #include "esp_log.h"
 #include "os/os_mbuf.h"
 

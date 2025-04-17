@@ -46,6 +46,7 @@ namespace NimBLE {
     ~NimBLEAdvertising();
 
     std::vector<std::string> m_serviceUUIDs;
+    ble_uuid16_t* m_uuidArray;
     std::string m_name;
     bool m_advertising;
   };
